@@ -27,11 +27,13 @@ export function getDetailsContentLayout(ymaps) {
         {% endif %}
     `,
     {
-      build: () => {
+      // Изменили arrow function на обычную. Чтобы this был корректным.
+      build: function() {
+        
         BalloonContentLayout.superclass.build.call(this);
 
         const { details } = this.getData().object.properties;
-
+        
         if (details) {
           const container = this.getElement().querySelector('.details-chart');
 
@@ -42,8 +44,9 @@ export function getDetailsContentLayout(ymaps) {
           );
         }
       },
-
-      clear: () => {
+      
+      // Изменили arrow function на обычную. Чтобы this был корректным.
+      clear: function() {
         if (this.connectionChart) {
           this.connectionChart.destroy();
         }

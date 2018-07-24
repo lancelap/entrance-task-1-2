@@ -40,7 +40,8 @@ export function createChart(container, data, isActive) {
         },
         scales: {
             xAxes: [{ ticks: { display: false } }],
-            yAxes: [{ ticks: { beginAtZero: true, max: 0 } }]
+            // Удалили наибольшое значение. По умолчанию будет браться как максимальное значение из данных. https://www.chartjs.org/docs/latest/axes/cartesian/linear.html
+            yAxes: [{ ticks: { beginAtZero: true } }]
         }
     }
   });

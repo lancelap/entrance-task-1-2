@@ -2,7 +2,8 @@ import { loadList, loadDetails } from './api';
 import { getDetailsContentLayout } from './details';
 import { createFilterControl } from './filter';
 
-export function initMap(ymaps, containerId) {
+// Добавляем ключевое слово default
+export default function initMap(ymaps, containerId) {
   const myMap = new ymaps.Map(containerId, {
     center: [55.76, 37.64],
     controls: [],
@@ -19,7 +20,10 @@ export function initMap(ymaps, containerId) {
     geoObjectBalloonContentLayout: getDetailsContentLayout(ymaps)
   });
 
-  objectManager.clusters.options.set('preset', 'islands#greenClusterIcons');
+  // Удаляем установку диаграммы для значка кластера. 
+
+  // Добавляем геообъект на карту.
+  myMap.geoObjects.add(objectManager);
 
   loadList().then(data => {
     objectManager.add(data);
@@ -31,7 +35,7 @@ export function initMap(ymaps, containerId) {
     const obj = objectManager.objects.getById(objectId);
 
     objectManager.objects.balloon.open(objectId);
-
+    
     if (!obj.properties.details) {
       loadDetails(objectId).then(data => {
         obj.properties.details = data;

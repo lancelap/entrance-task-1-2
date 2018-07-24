@@ -5,6 +5,11 @@ body,
   padding: 0;
 }
 
+/* Ставим высоту нашей карты в 100vh */
+#map {
+  height: 100vh;
+}
+
 .details-info {
   margin-bottom: 10px;
 }
